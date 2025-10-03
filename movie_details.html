@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" class="h-100" data-bs-theme="auto">
+<head>
+    <meta charset="UTF-8">
+    <title>Pink Cinema</title>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body>
+<div id="topNavbar"></div>
+<div id="movieBanner"></div>
+
+<div class="container">
+    <div class="row">
+        <div id="movieInformation" class="col"></div>
+        <div id="castAndCrew" class="col"></div>
+    </div>
+    <div class="row">
+        <div class = "col">
+        <a class="btn btn-secondary tn-link my-3 " href="moviesHW.html">Go back</a>
+        </div>
+    </div>
+</div>
+
+
+<div id="footer" class="fixed-bottom"></div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
+        integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
+        crossorigin="anonymous"></script>
+<script src="js/page_header.js"></script>
+<script src="js/movie_details.js"></script>
+<script src="js/page_footer.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const movieIdentifier = new URLSearchParams(window.location.search).get("id");
+        const movieObject = JSON.parse(sessionStorage.getItem(movieIdentifier));
+        // sessionStorage.removeItem(movieIdentifier)
+
+        document.getElementById("topNavbar").appendChild(genNavbar("details"));
+        document.getElementById("movieBanner").appendChild(genMovieBanner(movieObject));
+        document.getElementById("movieInformation").appendChild(genMovieInformation(movieObject));
+        document.getElementById("castAndCrew").appendChild(genCastAndCrew(movieObject));
+        document.getElementById("footer").appendChild(genFooter());
+
+    })
+</script>
+</body>
+</html>
