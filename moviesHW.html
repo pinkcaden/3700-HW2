@@ -11,28 +11,22 @@
 <div class="container-fluid text-black h1 text-center p-4 m-4 ">Pink Movie Collection</div>
 <div id="movieThumbnails"></div>
 <div id = "footer"></div>
-
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"
         integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy"
         crossorigin="anonymous"></script>
 <script src="js/page_header_footer.js"></script>
 <script src="js/movie_thumbnails.js"></script>
-
 <script>
     "use strict"
-
     async function loadMovies(){
         let moviesSet = {}
         await fetch(MOVIES_URL)
             .then(res => res.json())
             .then(prom => {
                 prom.forEach(movieObject => {
-
                     const identifier = Date.now().toString() + Math.random().toString();
                     moviesSet[identifier] = movieObject;
-
                 })
-
             }).catch(err => console.log(err));
         document.getElementById("movieThumbnails").appendChild(genThumbnailsTable(moviesSet));
     }
@@ -41,7 +35,6 @@
         loadMovies();
         document.getElementById("footer").appendChild(genFooter());
     })
-
 </script>
 </body>
 </html>
