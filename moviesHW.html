@@ -20,6 +20,7 @@
 
 <script>
     "use strict"
+
     async function loadMovies(){
         let moviesSet = {}
         await fetch(MOVIES_URL)
@@ -33,7 +34,7 @@
                 })
 
             }).catch(err => console.log(err));
-        document.getElementById("movieThumbnails").appendChild(genThumbnailSet(moviesSet));
+        document.getElementById("movieThumbnails").appendChild(genThumbnailsTable(moviesSet));
     }
     document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("topNavbar").appendChild(genNavbar("home"));
