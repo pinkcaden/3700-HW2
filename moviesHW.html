@@ -43,6 +43,10 @@
         loadMovies();
         document.getElementById("footer").appendChild(genFooter());
         document.getElementById("movieForm").appendChild(genMovieForm())
+        document.getElementById("clearButton").addEventListener("click", function(){
+            clearMovieForm();
+        })
+
 
     })
 

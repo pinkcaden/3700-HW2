@@ -1,10 +1,34 @@
+
+
+
+function clearMovieForm() {
+    document.getElementById("addForm").reset()
+
+    const titleErr = document.getElementById("titleErr").innerText = '';
+    const yearErr = document.getElementById("yearErr").innerText = '';
+    const descriptionErr = document.getElementById("descriptionErr").innerText = '';
+    const directorErr = document.getElementById("directorErr").innerText = '';
+    const budgetErr = document.getElementById("budgetErr").innerText = '';
+    const actorErr = document.getElementById("actorErr").innerText = '';
+    const roleErr = document.getElementById("roleErr").innerText = '';
+
+
+
+
+
+}
+
+
+
+
+
 function genMovieForm() {
     const container = document.createElement("div");
     container.classList.add("container", "m-3")
 
     container.innerHTML = `
     <h3>Add New Movie</h3>
-    <form onsubmit = "event.preventDefault(); postMovieObject()" >
+    <form id = "addForm" onsubmit = "preventDefault(); postMovieObject()" >
     
     <div class = "row">
         <div class = "col-8">
@@ -68,11 +92,11 @@ function genMovieForm() {
     </div>
     <div class = "row">
         <div class = "col-6">
-            
+            <button id = "clearButton" class = "btn btn-light" >Clear Form</button>
         </div>
     <div class = "col-6">
-    <button class = "btn btn-primary" type = "submit">Add Movie</button>
-</div>
+        <button class = "btn btn-primary" type = "submit">Add Movie</button>
+    </div>
 </div>
 </form>
     
