@@ -9,6 +9,7 @@
 <body>
 <div id="topNavbar"></div>
 <div class="container-fluid text-black h1 text-center p-4 m-4 ">Pink Movie Collection</div>
+<div id = "movieForm"></div>
 <div id="movieThumbnails"></div>
 <div id = "footer"></div>
 
@@ -18,6 +19,7 @@
 <script src="js/page_header_footer.js"></script>
 <script src="js/movie_thumbnails.js"></script>
 <script src="js/movie_submit.js"></script>
+<script src="js/movie_form.js"></script>
 
 <script>
     "use strict"
@@ -40,6 +42,8 @@
         document.getElementById("topNavbar").appendChild(genNavbar("home"));
         loadMovies();
         document.getElementById("footer").appendChild(genFooter());
+        document.getElementById("movieForm").appendChild(genMovieForm())
+
     })
 
 </script>

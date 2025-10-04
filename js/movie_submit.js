@@ -69,10 +69,12 @@ function validateDirector(director) {
 
 
 function validateBudget(budget) {
+
     const minBudget = VALIDATION_VALUES["budget"]["minBudgetInc"];
     const maxBudget = VALIDATION_VALUES["budget"]["maxBudgetInc"];
     let budgetNum = parseFloat(budget.toString().replace('M', '' ))
-    if (isNaN(budget)) {
+    console.log(budgetNum);
+    if (isNaN(budgetNum)) {
         return {"isValid": false, "message": "Budget must be a number."};
     }
     if (budget < minBudget) {
@@ -106,14 +108,14 @@ function validateRole(role) {
 }
 
 function buildMovieObject() {
-    const titleVal = document.getElementById("1").value;
-    const yearVal = document.getElementById("2").value;
-    const descriptionVal = document.getElementById("3").value;
-    const directorVal = document.getElementById("4").value;
-    const budgetVal = document.getElementById("5").value;
-    const actorVal = document.getElementById("6").value;
-    const roleVal = document.getElementById("7").value;
-    const boxVal = document.getElementById("8").value;
+    const titleVal = document.getElementById("titleAdd").value;
+    const yearVal = document.getElementById("yearAdd").value;
+    const descriptionVal = document.getElementById("descriptionAdd").value;
+    const directorVal = document.getElementById("directorAdd").value;
+    const budgetVal = document.getElementById("budgetAdd").value;
+    const actorVal = document.getElementById("actorAdd").value;
+    const roleVal = document.getElementById("roleAdd").value;
+    const boxVal = document.getElementById("boxAdd").value;
 
     return {
         "id": 1,
@@ -131,13 +133,13 @@ function buildMovieObject() {
 
 function validateMovieObject(movieObject) {
 
-    const titleErr = document.getElementById("");
-    const yearErr = document.getElementById("");
-    const descriptionErr = document.getElementById("");
-    const directorErr = document.getElementById("");
-    const budgetErr = document.getElementById("");
-    const actorErr = document.getElementById("");
-    const roleErr = document.getElementById("");
+    const titleErr = document.getElementById("titleErr");
+    const yearErr = document.getElementById("yearErr");
+    const descriptionErr = document.getElementById("descriptionErr");
+    const directorErr = document.getElementById("directorErr");
+    const budgetErr = document.getElementById("budgetErr");
+    const actorErr = document.getElementById("actorErr");
+    const roleErr = document.getElementById("roleErr");
 
     let validData = true;
 
@@ -190,6 +192,9 @@ async function postMovieObject() {
                 },
                 body: JSON.stringify(movieObject)
             });
+            if (response.ok){
+                await loadMovies();
+            }
         } catch (error) {
             console.log(error);
         }

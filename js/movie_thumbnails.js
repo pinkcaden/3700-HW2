@@ -1,4 +1,4 @@
-const MOVIES_URL = "http://localhost:3000/movie_database"
+const MOVIES_URL = "http://localhost:3000/movies"
 
 
 function genThumbnail(movieKey, movieObject) {
