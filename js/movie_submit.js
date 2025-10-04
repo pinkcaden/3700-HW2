@@ -71,6 +71,10 @@ function validateDirector(director) {
 function validateBudget(budget) {
     const minBudget = VALIDATION_VALUES["budget"]["minBudgetInc"];
     const maxBudget = VALIDATION_VALUES["budget"]["maxBudgetInc"];
+    let budgetNum = parseFloat(budget.toString().replace('M', '' ))
+    if (isNaN(budget)) {
+        return {"isValid": false, "message": "Budget must be a number."};
+    }
     if (budget < minBudget) {
         return {"isValid": false, "message": `Budget must be at least ${minBudget} million.`};
     }
@@ -111,7 +115,7 @@ function buildMovieObject() {
     const roleVal = document.getElementById("7").value;
     const boxVal = document.getElementById("8").value;
 
-    const newMovie = {
+    return {
         "id": 1,
         "title": titleVal,
         "description": descriptionVal,
@@ -162,12 +166,12 @@ function validateMovieObject(movieObject) {
         validData = false;
         budgetErr.innerText = validateRes["message"];
     }
-    validateRes = validateActor(movieObject["actors"]);
+    validateRes = validateActor(movieObject["actors"][0]["name"]);
     if (!(validateRes["isValid"])) {
         validData = false;
         actorErr.innerText = validateRes["message"];
     }
-    validateRes = validateRole(movieObject["role"]);
+    validateRes = validateRole(movieObject["actors"][0]["role"]);
     if (!(validateRes["isValid"])) {
         validData = false;
         roleErr.innerText = validateRes["message"];
@@ -175,8 +179,19 @@ function validateMovieObject(movieObject) {
     return validData;
 }
 
-function postMovieObject(){
-
-
-
+async function postMovieObject() {
+    let movieObject = buildMovieObject();
+    if (validateMovieObject(movieObject)) {
+        try {
+            const response = await fetch(MOVIES_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(movieObject)
+            });
+        } catch (error) {
+            console.log(error);
+        }
+    }
 }
